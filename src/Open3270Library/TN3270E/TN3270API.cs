@@ -502,7 +502,7 @@ namespace Open3270.TN3270
         {
             lock (this.tn)
             {
-                return this.tn.Action.Execute(submit, name, args);
+                return this.tn.Action.Execute(name, args);
             }
         }
         public bool KeyboardCommandCausesSubmit(string name)

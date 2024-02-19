@@ -2816,7 +2816,7 @@ namespace Open3270.TN3270
 						{
 							case '\b':
 								{
-									this.action.action_internal(new ActionDelegate(LeftAction), ia);
+									Actions.Action_internal(new ActionDelegate(LeftAction), ia);
 									continue;
 								}
 							case '\f':
@@ -2827,7 +2827,7 @@ namespace Open3270.TN3270
 									}
 									else
 									{
-										this.action.action_internal(new ActionDelegate(ClearAction), ia);
+										Actions.Action_internal(new ActionDelegate(ClearAction), ia);
 										if (this.telnet.Is3270)
 										{
 											return length - 1;
@@ -2843,11 +2843,11 @@ namespace Open3270.TN3270
 								{
 									if (pasting)
 									{
-										this.action.action_internal(new ActionDelegate(MoveCursorToNewLine), ia);
+										Actions.Action_internal(new ActionDelegate(MoveCursorToNewLine), ia);
 									}
 									else
 									{
-										this.action.action_internal(new ActionDelegate(EnterAction), ia);
+										Actions.Action_internal(new ActionDelegate(EnterAction), ia);
 										if (this.telnet.Is3270)
 											return length - 1;
 									}
@@ -2860,7 +2860,7 @@ namespace Open3270.TN3270
 								}
 							case '\t':
 								{
-									this.action.action_internal(new ActionDelegate(TabForwardAction), ia);
+									Actions.Action_internal(new ActionDelegate(TabForwardAction), ia);
 									break;
 								}
 							case '\\':
@@ -2926,13 +2926,13 @@ namespace Open3270.TN3270
 									}
 								case 'b':
 									{
-										this.action.action_internal(new ActionDelegate(LeftAction), ia);
+										Actions.Action_internal(new ActionDelegate(LeftAction), ia);
 										state = EIState.Base;
 										break;
 									}
 								case 'f':
 									{
-										this.action.action_internal(new ActionDelegate(ClearAction), ia);
+										Actions.Action_internal(new ActionDelegate(ClearAction), ia);
 										state = EIState.Base;
 										if (this.telnet.Is3270)
 										{
@@ -2945,7 +2945,7 @@ namespace Open3270.TN3270
 									}
 								case 'n':
 									{
-										this.action.action_internal(new ActionDelegate(EnterAction), ia);
+										Actions.Action_internal(new ActionDelegate(EnterAction), ia);
 										state = EIState.Base;
 										if (this.telnet.Is3270)
 											return length - 1;
@@ -2959,19 +2959,19 @@ namespace Open3270.TN3270
 									}
 								case 'r':
 									{
-										this.action.action_internal(new ActionDelegate(MoveCursorToNewLine), ia);
+										Actions.Action_internal(new ActionDelegate(MoveCursorToNewLine), ia);
 										state = EIState.Base;
 										break;
 									}
 								case 't':
 									{
-										this.action.action_internal(new ActionDelegate(TabForwardAction), ia);
+										Actions.Action_internal(new ActionDelegate(TabForwardAction), ia);
 										state = EIState.Base;
 										break;
 									}
 								case 'T':
 									{
-										this.action.action_internal(new ActionDelegate(BackTab_action), ia);
+										Actions.Action_internal(new ActionDelegate(BackTab_action), ia);
 										state = EIState.Base;
 									}
 									break;
@@ -3407,7 +3407,7 @@ namespace Open3270.TN3270
 					}
 				}
 
-				this.telnet.Action.action_output("data: field[" + index + "] at " + newfield + " to " + end + " (x=" + telnet.Controller.AddressToColumn(newfield) + ", y=" + telnet.Controller.AddresstoRow(newfield) + ", len=" + (end - newfield + 1) + ")\n");
+				this.telnet.Action.Action_output("data: field[" + index + "] at " + newfield + " to " + end + " (x=" + telnet.Controller.AddressToColumn(newfield) + ", y=" + telnet.Controller.AddresstoRow(newfield) + ", len=" + (end - newfield + 1) + ")\n");
 
 				index++;
 				fieldpos = newfield;

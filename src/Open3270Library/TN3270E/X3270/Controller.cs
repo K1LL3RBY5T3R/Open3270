@@ -2866,7 +2866,7 @@ namespace Open3270.TN3270
 				if (i != 0 && 0 == ((first + i) % rel_cols))
 				{
 					lineBuffer[s] = 0;
-					this.telnet.Action.action_output(lineBuffer, s);
+					this.telnet.Action.Action_output(lineBuffer, s);
 					s = 0;
 					debug = "";
 					any = false;
@@ -2901,7 +2901,7 @@ namespace Open3270.TN3270
 			if (any)
 			{
 				lineBuffer[s] = 0;
-				this.telnet.Action.action_output(lineBuffer, s);
+				this.telnet.Action.Action_output(lineBuffer, s);
 			}
 		}
 
@@ -2932,7 +2932,7 @@ namespace Open3270.TN3270
 				if (i != 0 && 0 == ((first + i) % relCols))
 				{
 					linebuf[s] = 0;
-					telnet.Action.action_output(linebuf, s);
+					telnet.Action.Action_output(linebuf, s);
 					s = 0;
 					any = false;
 				}
@@ -2955,7 +2955,7 @@ namespace Open3270.TN3270
 			if (any)
 			{
 				linebuf[s] = 0;
-				this.telnet.Action.action_output(linebuf, s, true);
+				this.telnet.Action.Action_output(linebuf, s, true);
 			}
 		}
 
@@ -3130,8 +3130,8 @@ namespace Open3270.TN3270
 				}
 
 
-				this.telnet.Action.action_output("<Field>");
-				this.telnet.Action.action_output("<Location position=\"" + start + "\" left=\"" + AddressToColumn(start) + "\" top=\"" + AddresstoRow(start) + "\" length=\"" + length + "\"/>");
+				this.telnet.Action.Action_output("<Field>");
+				this.telnet.Action.Action_output("<Location position=\"" + start + "\" left=\"" + AddressToColumn(start) + "\" top=\"" + AddresstoRow(start) + "\" length=\"" + length + "\"/>");
 				
 				string temp = "";
 				temp += "<Attributes Base=\"" + fa + "\"";
@@ -3175,9 +3175,9 @@ namespace Open3270.TN3270
 				}
 
 				temp += "/>";
-				this.telnet.Action.action_output(temp);
+				this.telnet.Action.Action_output(temp);
 				this.DumpRangeXML(start, length, true, screenBuffer, rowCount, columnCount);
-				this.telnet.Action.action_output("</Field>");
+				this.telnet.Action.Action_output("</Field>");
 			}
 
 			if (baddr <= address)
@@ -3226,13 +3226,13 @@ namespace Open3270.TN3270
 		{
 			int pos = 0;
 			//string name = "DumpXML_action";
-			telnet.Action.action_output("<?xml version=\"1.0\"?>");// encoding=\"utf-16\"?>");
-			telnet.Action.action_output("<XMLScreen xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
-			telnet.Action.action_output("<CX>" + columnCount + "</CX>");
-			telnet.Action.action_output("<CY>" + rowCount + "</CY>");
+			telnet.Action.Action_output("<?xml version=\"1.0\"?>");// encoding=\"utf-16\"?>");
+			telnet.Action.Action_output("<XMLScreen xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
+			telnet.Action.Action_output("<CX>" + columnCount + "</CX>");
+			telnet.Action.Action_output("<CY>" + rowCount + "</CY>");
 			if (this.isFormatted)
 			{
-				this.telnet.Action.action_output("<Formatted>true</Formatted>");
+				this.telnet.Action.Action_output("<Formatted>true</Formatted>");
 				ExtendedAttribute ea = new ExtendedAttribute();
 				// CFCJR Mar 4,2008 : user tmcquire in post on www.open3270.net
 				// says this do loop can hang up (pos never changes) in certain cases.
@@ -3256,23 +3256,23 @@ namespace Open3270.TN3270
 			}
 			else
 			{
-				this.telnet.Action.action_output("<Formatted>false</Formatted>");
+				this.telnet.Action.Action_output("<Formatted>false</Formatted>");
 			}
 
 			//Output unformatted image anyway
 			int i;
-			this.telnet.Action.action_output("<Unformatted>");
+			this.telnet.Action.Action_output("<Unformatted>");
 			for (i = 0; i < rowCount; i++)
 			{
 				int start = RowColumnToByteAddress(i, 0);
 
 				int length = columnCount;
-				this.telnet.Action.action_output("<Text>");
+				this.telnet.Action.Action_output("<Text>");
 				this.DumpRangeXML(start, length, true, screenBuffer, rowCount, columnCount);
-				this.telnet.Action.action_output("</Text>");
+				this.telnet.Action.Action_output("</Text>");
 			}
-			this.telnet.Action.action_output("</Unformatted>");
-			this.telnet.Action.action_output("</XMLScreen>");
+			this.telnet.Action.Action_output("</Unformatted>");
+			this.telnet.Action.Action_output("</XMLScreen>");
 			return true;
 		}
 
