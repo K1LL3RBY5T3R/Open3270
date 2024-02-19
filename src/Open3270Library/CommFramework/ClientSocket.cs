@@ -107,9 +107,9 @@ namespace Open3270.Library
 			mState = State.Waiting;
 			//
 			// permissions
-			SocketPermission mySocketPermission1 = new SocketPermission(PermissionState.None);
-			mySocketPermission1.AddPermission(NetworkAccess.Connect, TransportType.All, "localhost", 8800);
-			mySocketPermission1.Demand();
+			//SocketPermission mySocketPermission1 = new SocketPermission(PermissionState.None);
+			//mySocketPermission1.AddPermission(NetworkAccess.Connect, TransportType.All, "localhost", 8800);
+			//mySocketPermission1.Demand();
 
 			//
 			// Actually connect

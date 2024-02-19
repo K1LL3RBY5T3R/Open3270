@@ -77,9 +77,9 @@ namespace Open3270.Library
 							//
 							// Demand file permission so that we work within the Internet Explorer sandbox
 							//
-							FileIOPermission permission = new FileIOPermission( PermissionState.Unrestricted );
-							permission.AddPathList(FileIOPermissionAccess.Append, AuditFile);
-							permission.Demand(); 
+							//FileIOPermission permission = new FileIOPermission( PermissionState.Unrestricted );
+							//permission.AddPathList(FileIOPermissionAccess.Append, AuditFile);
+							//permission.Demand(); 
 							//
 							StreamWriter sw = File.AppendText(_auditFile);
 							try
@@ -91,7 +91,7 @@ namespace Open3270.Library
 							{
 								sw.Close();
 							}
-							permission.Deny();
+							//permission.Deny();
 						}
 						catch (Exception ee)
 						{
