@@ -71,6 +71,7 @@
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(139, 20);
             this.txtHost.TabIndex = 3;
+            this.txtHost.Text = "zos.myflexterm.com";
             // 
             // txtHostPort
             // 
@@ -78,7 +79,7 @@
             this.txtHostPort.Name = "txtHostPort";
             this.txtHostPort.Size = new System.Drawing.Size(139, 20);
             this.txtHostPort.TabIndex = 4;
-            this.txtHostPort.Text = "23";
+            this.txtHostPort.Text = "623";
             // 
             // txtTerminalType
             // 
