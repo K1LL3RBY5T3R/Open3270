@@ -28,90 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnConnect = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnDump = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.OpenEmulator = new SampleForm.OpenEmulator();
-            this.SuspendLayout();
+            btnConnect = new System.Windows.Forms.Button();
+            btnClear = new System.Windows.Forms.Button();
+            btnRefresh = new System.Windows.Forms.Button();
+            btnDump = new System.Windows.Forms.Button();
+            btnSettings = new System.Windows.Forms.Button();
+            OpenEmulator = new OpenEmulator();
+            SuspendLayout();
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(592, 12);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(115, 33);
-            this.btnConnect.TabIndex = 1;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            btnConnect.Location = new System.Drawing.Point(1055, 23);
+            btnConnect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new System.Drawing.Size(134, 38);
+            btnConnect.TabIndex = 1;
+            btnConnect.Text = "Connect";
+            btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += btnConnect_Click;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(592, 64);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(115, 33);
-            this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
+            btnClear.Location = new System.Drawing.Point(1055, 129);
+            btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new System.Drawing.Size(134, 38);
+            btnClear.TabIndex = 2;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(592, 103);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(115, 33);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            btnRefresh.Location = new System.Drawing.Point(1055, 204);
+            btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new System.Drawing.Size(134, 38);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // btnDump
             // 
-            this.btnDump.Location = new System.Drawing.Point(592, 142);
-            this.btnDump.Name = "btnDump";
-            this.btnDump.Size = new System.Drawing.Size(115, 33);
-            this.btnDump.TabIndex = 4;
-            this.btnDump.Text = "Dump";
-            this.btnDump.UseVisualStyleBackColor = true;
+            btnDump.Location = new System.Drawing.Point(1055, 266);
+            btnDump.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnDump.Name = "btnDump";
+            btnDump.Size = new System.Drawing.Size(134, 38);
+            btnDump.TabIndex = 4;
+            btnDump.Text = "Dump";
+            btnDump.UseVisualStyleBackColor = true;
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(592, 181);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(115, 33);
-            this.btnSettings.TabIndex = 5;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            btnSettings.Location = new System.Drawing.Point(1055, 319);
+            btnSettings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Size = new System.Drawing.Size(134, 38);
+            btnSettings.TabIndex = 5;
+            btnSettings.Text = "Settings";
+            btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Click += btnSettings_Click;
             // 
             // OpenEmulator
             // 
-            this.OpenEmulator.AcceptsTab = true;
-            this.OpenEmulator.BackColor = System.Drawing.Color.Black;
-            this.OpenEmulator.ForeColor = System.Drawing.Color.Lime;
-            this.OpenEmulator.Location = new System.Drawing.Point(12, 12);
-            this.OpenEmulator.MaxLength = 1920;
-            this.OpenEmulator.Name = "OpenEmulator";
-            this.OpenEmulator.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.OpenEmulator.Size = new System.Drawing.Size(574, 373);
-            this.OpenEmulator.TabIndex = 0;
-            this.OpenEmulator.Text = "";
+            OpenEmulator.AcceptsTab = true;
+            OpenEmulator.BackColor = System.Drawing.Color.Black;
+            OpenEmulator.ForeColor = System.Drawing.Color.Lime;
+            OpenEmulator.Location = new System.Drawing.Point(14, 14);
+            OpenEmulator.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            OpenEmulator.MaxLength = 2000;
+            OpenEmulator.Name = "OpenEmulator";
+            OpenEmulator.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            OpenEmulator.Size = new System.Drawing.Size(1009, 677);
+            OpenEmulator.TabIndex = 0;
+            OpenEmulator.Text = "";
+            OpenEmulator.KeyUp += OpenEmulator_KeyUp;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 397);
-            this.Controls.Add(this.btnSettings);
-            this.Controls.Add(this.btnDump);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.OpenEmulator);
-            this.Name = "MainWindow";
-            this.Text = "Open3270";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1202, 713);
+            Controls.Add(btnSettings);
+            Controls.Add(btnDump);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnClear);
+            Controls.Add(btnConnect);
+            Controls.Add(OpenEmulator);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "MainWindow";
+            Text = "Open3270";
+            ResumeLayout(false);
         }
 
         #endregion
