@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,16 @@ namespace SampleForm
         public void Redraw()
         {
             RichTextBox Render = new RichTextBox();
-            Render.Text = TN3270.CurrentScreenXML.Dump();
-
-            this.Clear();
-            Font fnt = new System.Drawing.Font("Consolas", 10);
+            //Render.Text = TN3270.CurrentScreenXML.Dump();
+            int cursorstart = this.SelectionStart;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < TN3270.CurrentScreenXML.CY; i++)
+            {
+                sb.AppendLine(TN3270.CurrentScreenXML.GetRow(i));
+                Debug.WriteLine(TN3270.CurrentScreenXML.GetRow(i).Length + ": " + i);
+            }
+            Render.Text += sb.ToString();
+            Font fnt = new System.Drawing.Font("Consolas", 15);
             Render.Font = new System.Drawing.Font(fnt, FontStyle.Regular);
 
             IsRedrawing = true;
@@ -47,8 +54,6 @@ namespace SampleForm
                         Render.SelectionColor = Color.Lime;
                 }
                 return;
-
-                Render.SelectionStart = (TN3270.CursorY) * 80 + TN3270.CursorX;
             }
 
             Render.SelectionProtected = true;
@@ -83,7 +88,14 @@ namespace SampleForm
                 }
             }
 
+            Render.SelectionStart = (TN3270.CursorY) * 80 + TN3270.CursorX;
+            this.SelectionStart = Render.SelectionStart;
+
+
+            Render.ScrollToCaret();
             this.Rtf = Render.Rtf;
+
+            this.Select(cursorstart, 1);
 
             IsRedrawing = false;
         }
@@ -92,9 +104,7 @@ namespace SampleForm
         {
             if (e.KeyCode == Keys.Back)
             {
-                this.SelectionStart--;
-                e.Handled = true;
-                return;
+
             }
             if (e.KeyCode == Keys.Tab)
             {
@@ -105,6 +115,7 @@ namespace SampleForm
         }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
+
             if (e.KeyChar == '\r')
             {
                 TN3270.SendKey(true, TnKey.Enter, 1000);
@@ -113,13 +124,18 @@ namespace SampleForm
                 return;
             }
             if (e.KeyChar == '\b')
+            {
+                this.SelectionStart--;
+                e.Handled = true;
                 return;
+            }
             if (e.KeyChar == '\t')
                 return;
 
             TN3270.SetText(e.KeyChar.ToString());
             base.OnKeyPress(e);
         }
+
         protected override void OnSelectionChanged(EventArgs e)
         {
             if (TN3270.IsConnected)
@@ -128,10 +144,10 @@ namespace SampleForm
                 if (!IsRedrawing)
                 {
                     int i = this.SelectionStart, x, y = 0;
-                    while (i >= 81)
+                    while (i >= 80)
                     {
                         y++;
-                        i -= 81;
+                        i -= 80;
                     }
                     x = i;
 

@@ -33,5 +33,10 @@ namespace SampleForm
         {
             sw.Show();
         }
+
+        private void OpenEmulator_KeyUp(object sender, KeyEventArgs e)
+        {
+            OpenEmulator.Redraw();
+        }
     }
 }
