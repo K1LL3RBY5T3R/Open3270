@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Open3270;
@@ -16,6 +17,7 @@ namespace SampleForm
         private bool IsRedrawing = false;
         public void Connect(string Server, int Port, string Type, bool UseSsl)
         {
+            TN3270.Debug = true;
             TN3270.Config.UseSSL = UseSsl;
             TN3270.Config.TermType = Type;
             TN3270.Connect(Server, Port, string.Empty);
@@ -24,16 +26,20 @@ namespace SampleForm
         }
         public void Redraw()
         {
+            
+        
             RichTextBox Render = new RichTextBox();
-            //Render.Text = TN3270.CurrentScreenXML.Dump();
-            int cursorstart = this.SelectionStart;
             StringBuilder sb = new StringBuilder();
+            if (TN3270.IsConnected) {
+                TN3270.Refresh(true, 1000); 
+            }
+            
+            
             for (int i = 0; i < TN3270.CurrentScreenXML.CY; i++)
             {
                 sb.AppendLine(TN3270.CurrentScreenXML.GetRow(i));
-                Debug.WriteLine(TN3270.CurrentScreenXML.GetRow(i).Length + ": " + i);
             }
-            Render.Text += sb.ToString();
+            Render.Text = sb.ToString();
             Font fnt = new System.Drawing.Font("Consolas", 15);
             Render.Font = new System.Drawing.Font(fnt, FontStyle.Regular);
 
@@ -59,8 +65,7 @@ namespace SampleForm
             Render.SelectionProtected = true;
             foreach (Open3270.TN3270.XMLScreenField field in TN3270.CurrentScreenXML.Fields)
             {
-                //if (string.IsNullOrEmpty(field.Text))
-                //    continue;
+
 
                 System.Windows.Forms.Application.DoEvents();
                 Color clr = Color.Lime;
@@ -88,44 +93,36 @@ namespace SampleForm
                 }
             }
 
-            Render.SelectionStart = (TN3270.CursorY) * 80 + TN3270.CursorX;
-            this.SelectionStart = Render.SelectionStart;
+            Render.SelectionStart = (TN3270.CursorY) * 81 + TN3270.CursorX;
+            
 
 
             Render.ScrollToCaret();
             this.Rtf = Render.Rtf;
-
+            this.SelectionStart = Render.SelectionStart;
+            int cursorstart = this.SelectionStart;
+            Debug.WriteLine(cursorstart);
             this.Select(cursorstart, 1);
+            Debug.WriteLine(TN3270.CursorX + ", " + TN3270.CursorY );
 
             IsRedrawing = false;
         }
 
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Back)
-            {
-
-            }
-            if (e.KeyCode == Keys.Tab)
-            {
-                //TN3270.SetCursor();
-                e.Handled = true;
-                return;
-            }
-        }
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
 
             if (e.KeyChar == '\r')
             {
-                TN3270.SendKey(true, TnKey.Enter, 1000);
-                Redraw();
+                if (TN3270.SendKey(true, TnKey.Enter, 20000))
+                {
+                    Redraw();
+                }
                 e.Handled = true;
                 return;
             }
             if (e.KeyChar == '\b')
             {
-                this.SelectionStart--;
+                this.Text.Remove(this.SelectionStart--,1);
                 e.Handled = true;
                 return;
             }
@@ -144,16 +141,25 @@ namespace SampleForm
                 if (!IsRedrawing)
                 {
                     int i = this.SelectionStart, x, y = 0;
-                    while (i >= 80)
+                    while (i >= 81)
                     {
                         y++;
-                        i -= 80;
+                        i -= 81;
                     }
                     x = i;
 
                     TN3270.SetCursor(x, y);
                 }
+                this.Select(this.SelectionStart, 1);
             }
         }
+
+
+       public void RefreshText(char c)
+        { 
+                this.SelectedText = c.ToString();
+                this.Select(this.SelectionStart, 1);  
+        }
+
     }
 }

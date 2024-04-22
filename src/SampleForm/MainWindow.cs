@@ -22,11 +22,13 @@ namespace SampleForm
         private void btnConnect_Click(object sender, EventArgs e)
         {
             OpenEmulator.Connect(sw.Host, sw.Port, sw.TerminalType, sw.UseSsl);
+            OpenEmulator.Focus();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             OpenEmulator.Redraw();
+            OpenEmulator.Focus();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -36,7 +38,10 @@ namespace SampleForm
 
         private void OpenEmulator_KeyUp(object sender, KeyEventArgs e)
         {
-            OpenEmulator.Redraw();
+            if (char.IsLetterOrDigit(Convert.ToChar(e.KeyCode)))
+            {
+                OpenEmulator.RefreshText(Convert.ToChar(e.KeyCode));
+            }
         }
     }
 }
