@@ -27,7 +27,7 @@ namespace SampleForm
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            OpenEmulator.Redraw();
+            OpenEmulator.Redraw(true);
             OpenEmulator.Focus();
         }
 

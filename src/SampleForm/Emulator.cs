@@ -23,7 +23,7 @@ namespace SampleForm
             TN3270.Connect(Server, Port, string.Empty);
             
 
-            Redraw();
+            Redraw(true);
         }
 
         public void Disconnect()
@@ -31,13 +31,13 @@ namespace SampleForm
             TN3270.Close();
             this.Clear();
         }
-        public void Redraw()
+        public void Redraw(bool refresh)
         {
             
         
             RichTextBox Render = new RichTextBox();
             StringBuilder sb = new StringBuilder();
-            if (TN3270.IsConnected) {
+            if (TN3270.IsConnected && refresh) {
                 TN3270.Refresh(true, 1000); 
             }
             
@@ -121,9 +121,14 @@ namespace SampleForm
                 if (!IsRedrawing)
                 {
                     TN3270.SendKey(true, TnKey.F3, 2000);
-                    Redraw();
+                    Redraw(true);
                 }
                 e.Handled = true;
+            }
+            if (e.KeyCode == Keys.Tab)
+            {
+                TN3270.SendKey(true, TnKey.Tab, 2000);
+                Redraw(false);
             }
 
             if (e.KeyCode == Keys.Left)
@@ -141,7 +146,7 @@ namespace SampleForm
             {
                 if (TN3270.SendKey(true, TnKey.Enter, 20000))
                 {
-                    Redraw();
+                    Redraw(true);
                 }
                 e.Handled = true;
                 return;
@@ -150,11 +155,16 @@ namespace SampleForm
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append(TN3270.CurrentScreenXML.GetRow(TN3270.CursorY));
-                sb.Remove(0, TN3270.CursorX);
+                if (TN3270.CursorX > 0)
+                {
+                    sb.Append(TN3270.CurrentScreenXML.GetRow(TN3270.CursorY));
+                    sb.Remove(0, TN3270.CursorX);
+                }
+
                 this.SelectionStart--;
                 TN3270.SetText(sb.ToString());
                 this.SelectedText = "";
+
                 return;
             }
             if (e.KeyChar == '\t')
