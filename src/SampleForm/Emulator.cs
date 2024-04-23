@@ -21,8 +21,15 @@ namespace SampleForm
             TN3270.Config.UseSSL = UseSsl;
             TN3270.Config.TermType = Type;
             TN3270.Connect(Server, Port, string.Empty);
+            
 
             Redraw();
+        }
+
+        public void Disconnect()
+        {
+            TN3270.Close();
+            this.Clear();
         }
         public void Redraw()
         {
@@ -107,6 +114,25 @@ namespace SampleForm
 
             IsRedrawing = false;
         }
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F3)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F3, 2000);
+                    Redraw();
+                }
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                this.SelectionStart--;
+            }
+
+                base.OnKeyDown(e);
+        }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
@@ -122,13 +148,17 @@ namespace SampleForm
             }
             if (e.KeyChar == '\b')
             {
-                this.Text.Remove(this.SelectionStart--,1);
-                e.Handled = true;
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append(TN3270.CurrentScreenXML.GetRow(TN3270.CursorY));
+                sb.Remove(0, TN3270.CursorX);
+                this.SelectionStart--;
+                TN3270.SetText(sb.ToString());
+                this.SelectedText = "";
                 return;
             }
             if (e.KeyChar == '\t')
                 return;
-
             TN3270.SetText(e.KeyChar.ToString());
             base.OnKeyPress(e);
         }
@@ -158,7 +188,7 @@ namespace SampleForm
        public void RefreshText(char c)
         { 
                 this.SelectedText = c.ToString();
-                this.Select(this.SelectionStart, 1);  
+                this.Select(this.SelectionStart, 1); 
         }
 
     }

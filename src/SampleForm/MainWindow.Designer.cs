@@ -34,6 +34,7 @@
             btnDump = new System.Windows.Forms.Button();
             btnSettings = new System.Windows.Forms.Button();
             OpenEmulator = new OpenEmulator();
+            btnDisconnect = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // btnConnect
@@ -49,7 +50,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new System.Drawing.Point(1055, 129);
+            btnClear.Location = new System.Drawing.Point(1055, 199);
             btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnClear.Name = "btnClear";
             btnClear.Size = new System.Drawing.Size(134, 38);
@@ -59,7 +60,7 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new System.Drawing.Point(1055, 204);
+            btnRefresh.Location = new System.Drawing.Point(1055, 111);
             btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new System.Drawing.Size(134, 38);
@@ -70,7 +71,7 @@
             // 
             // btnDump
             // 
-            btnDump.Location = new System.Drawing.Point(1055, 266);
+            btnDump.Location = new System.Drawing.Point(1055, 243);
             btnDump.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnDump.Name = "btnDump";
             btnDump.Size = new System.Drawing.Size(134, 38);
@@ -80,7 +81,7 @@
             // 
             // btnSettings
             // 
-            btnSettings.Location = new System.Drawing.Point(1055, 319);
+            btnSettings.Location = new System.Drawing.Point(1055, 155);
             btnSettings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnSettings.Name = "btnSettings";
             btnSettings.Size = new System.Drawing.Size(134, 38);
@@ -104,11 +105,23 @@
             OpenEmulator.Text = "";
             OpenEmulator.KeyUp += OpenEmulator_KeyUp;
             // 
+            // btnDisconnect
+            // 
+            btnDisconnect.Location = new System.Drawing.Point(1055, 67);
+            btnDisconnect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnDisconnect.Name = "btnDisconnect";
+            btnDisconnect.Size = new System.Drawing.Size(134, 38);
+            btnDisconnect.TabIndex = 6;
+            btnDisconnect.Text = "Disconnect";
+            btnDisconnect.UseVisualStyleBackColor = true;
+            btnDisconnect.Click += btnDisconnect_Click;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1202, 713);
+            Controls.Add(btnDisconnect);
             Controls.Add(btnSettings);
             Controls.Add(btnDump);
             Controls.Add(btnRefresh);
@@ -129,6 +142,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnDump;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnDisconnect;
     }
 }
 

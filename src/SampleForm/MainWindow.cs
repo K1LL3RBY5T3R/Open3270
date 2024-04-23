@@ -43,5 +43,10 @@ namespace SampleForm
                 OpenEmulator.RefreshText(Convert.ToChar(e.KeyCode));
             }
         }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            OpenEmulator.Disconnect();
+        }
     }
 }
