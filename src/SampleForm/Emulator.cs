@@ -116,14 +116,40 @@ namespace SampleForm
         }
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.F1)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F1, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F2)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F2, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
             if (e.KeyCode == Keys.F3)
             {
                 if (!IsRedrawing)
                 {
                     TN3270.SendKey(true, TnKey.F3, 2000);
+                    this.Clear();
                     Redraw(true);
                 }
+               
                 e.Handled = true;
+                return;
             }
             if (e.KeyCode == Keys.Tab)
             {
@@ -141,7 +167,7 @@ namespace SampleForm
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-
+            Debug.WriteLine(e.KeyChar);
             if (e.KeyChar == '\r')
             {
                 if (TN3270.SendKey(true, TnKey.Enter, 20000))
@@ -169,7 +195,10 @@ namespace SampleForm
             }
             if (e.KeyChar == '\t')
                 return;
+            
             TN3270.SetText(e.KeyChar.ToString());
+            this.SelectedText = e.KeyChar.ToString();
+            this.Select(this.SelectionStart, 1);
             base.OnKeyPress(e);
         }
 
@@ -193,13 +222,5 @@ namespace SampleForm
                 this.Select(this.SelectionStart, 1);
             }
         }
-
-
-       public void RefreshText(char c)
-        { 
-                this.SelectedText = c.ToString();
-                this.Select(this.SelectionStart, 1); 
-        }
-
     }
 }

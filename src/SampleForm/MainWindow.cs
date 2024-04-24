@@ -36,14 +36,6 @@ namespace SampleForm
             sw.Show();
         }
 
-        private void OpenEmulator_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (char.IsLetterOrDigit(Convert.ToChar(e.KeyCode)))
-            {
-                OpenEmulator.RefreshText(Convert.ToChar(e.KeyCode));
-            }
-        }
-
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
             OpenEmulator.Disconnect();

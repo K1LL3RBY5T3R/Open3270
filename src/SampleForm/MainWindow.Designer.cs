@@ -103,7 +103,6 @@
             OpenEmulator.Size = new System.Drawing.Size(1009, 677);
             OpenEmulator.TabIndex = 0;
             OpenEmulator.Text = "";
-            OpenEmulator.KeyUp += OpenEmulator_KeyUp;
             // 
             // btnDisconnect
             // 
