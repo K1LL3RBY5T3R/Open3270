@@ -135,7 +135,6 @@ namespace SampleForm
                     this.Clear();
                     Redraw(true);
                 }
-
                 e.Handled = true;
                 return;
             }
@@ -148,6 +147,114 @@ namespace SampleForm
                     Redraw(true);
                 }
                
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F4)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F4, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F5)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F5, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F6)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F6, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F7)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F7, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F8)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F8, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F9)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F9, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F10)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F10, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F11)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F11, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F12, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+
                 e.Handled = true;
                 return;
             }
@@ -167,7 +274,6 @@ namespace SampleForm
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-            Debug.WriteLine(e.KeyChar);
             if (e.KeyChar == '\r')
             {
                 if (TN3270.SendKey(true, TnKey.Enter, 20000))
