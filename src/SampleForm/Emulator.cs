@@ -254,10 +254,143 @@ namespace SampleForm
                     this.Clear();
                     Redraw(true);
                 }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F13)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F13, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
 
                 e.Handled = true;
                 return;
             }
+            if (e.KeyCode == Keys.F14)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F14, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F15)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F15, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F16)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F16, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F17)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F17, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F18)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F18, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F19)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F19, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F20)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F20, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F21)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F21, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F22)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F22, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F23)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F23, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.F24)
+            {
+                if (!IsRedrawing)
+                {
+                    TN3270.SendKey(true, TnKey.F24, 2000);
+                    this.Clear();
+                    Redraw(true);
+                }
+                e.Handled = true;
+                return;
+            }
+
             if (e.KeyCode == Keys.Tab)
             {
                 TN3270.SendKey(true, TnKey.Tab, 2000);
