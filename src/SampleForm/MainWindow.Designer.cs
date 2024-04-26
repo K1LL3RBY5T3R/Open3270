@@ -35,6 +35,10 @@
             btnSettings = new System.Windows.Forms.Button();
             OpenEmulator = new OpenEmulator();
             btnDisconnect = new System.Windows.Forms.Button();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnConnect
@@ -97,7 +101,7 @@
             OpenEmulator.ForeColor = System.Drawing.Color.Lime;
             OpenEmulator.Location = new System.Drawing.Point(14, 14);
             OpenEmulator.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            OpenEmulator.MaxLength = 2000;
+            OpenEmulator.MaxLength = 1920;
             OpenEmulator.Name = "OpenEmulator";
             OpenEmulator.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             OpenEmulator.Size = new System.Drawing.Size(1009, 677);
@@ -115,11 +119,33 @@
             btnDisconnect.UseVisualStyleBackColor = true;
             btnDisconnect.Click += btnDisconnect_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+            statusStrip1.Location = new System.Drawing.Point(0, 691);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new System.Drawing.Size(1202, 22);
+            statusStrip1.TabIndex = 7;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
+            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1202, 713);
+            Controls.Add(statusStrip1);
             Controls.Add(btnDisconnect);
             Controls.Add(btnSettings);
             Controls.Add(btnDump);
@@ -130,7 +156,10 @@
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Name = "MainWindow";
             Text = "Open3270";
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -142,6 +171,9 @@
         private System.Windows.Forms.Button btnDump;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 
