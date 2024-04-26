@@ -40,5 +40,15 @@ namespace SampleForm
         {
             OpenEmulator.Disconnect();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenEmulator_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

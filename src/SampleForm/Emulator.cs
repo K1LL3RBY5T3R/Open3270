@@ -440,7 +440,6 @@ namespace SampleForm
             this.Select(this.SelectionStart, 1);
             base.OnKeyPress(e);
         }
-
         protected override void OnSelectionChanged(EventArgs e)
         {
             if (TN3270.IsConnected)
@@ -459,6 +458,8 @@ namespace SampleForm
                     TN3270.SetCursor(x, y);
                 }
                 this.Select(this.SelectionStart, 1);
+                // = TN3270.CursorX + TN3270.CursorY;
+
             }
         }
     }
