@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Open3270;
+using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Open3270;
 
 namespace SampleForm
 {
@@ -17,11 +13,10 @@ namespace SampleForm
         private bool IsRedrawing = false;
         public void Connect(string Server, int Port, string Type, bool UseSsl)
         {
-            TN3270.Debug = true;
             TN3270.Config.UseSSL = UseSsl;
             TN3270.Config.TermType = Type;
             TN3270.Connect(Server, Port, string.Empty);
-            
+
 
             Redraw(true);
         }
@@ -33,15 +28,16 @@ namespace SampleForm
         }
         public void Redraw(bool refresh)
         {
-            
-        
+
+
             RichTextBox Render = new RichTextBox();
             StringBuilder sb = new StringBuilder();
-            if (TN3270.IsConnected && refresh) {
-                TN3270.Refresh(true, 1000); 
+            if (TN3270.IsConnected && refresh)
+            {
+                TN3270.Refresh(true, 1000);
             }
-            
-            
+
+
             for (int i = 0; i < TN3270.CurrentScreenXML.CY; i++)
             {
                 sb.AppendLine(TN3270.CurrentScreenXML.GetRow(i));
@@ -101,16 +97,14 @@ namespace SampleForm
             }
 
             Render.SelectionStart = (TN3270.CursorY) * 81 + TN3270.CursorX;
-            
+
 
 
             Render.ScrollToCaret();
             this.Rtf = Render.Rtf;
             this.SelectionStart = Render.SelectionStart;
             int cursorstart = this.SelectionStart;
-            Debug.WriteLine(cursorstart);
             this.Select(cursorstart, 1);
-            Debug.WriteLine(TN3270.CursorX + ", " + TN3270.CursorY );
 
             IsRedrawing = false;
         }
@@ -146,7 +140,7 @@ namespace SampleForm
                     this.Clear();
                     Redraw(true);
                 }
-               
+
                 e.Handled = true;
                 return;
             }
@@ -399,10 +393,35 @@ namespace SampleForm
 
             if (e.KeyCode == Keys.Left)
             {
-                this.SelectionStart--;
+                if (this.SelectionStart > 0)
+                {
+                    this.SelectionStart--;
+                }
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                if (this.SelectionStart - 81 >= 0)
+                {
+                    this.SelectionStart -= 81;
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                if (this.SelectionStart + 81 <= 1920)
+                {
+                    this.SelectionStart += 81;
+                }
+                e.Handled = true;
+                return;
+            }
+            if (e.KeyCode == Keys.Back)
+            {
+                return;
             }
 
-                base.OnKeyDown(e);
+            base.OnKeyDown(e);
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -419,22 +438,37 @@ namespace SampleForm
             if (e.KeyChar == '\b')
             {
                 StringBuilder sb = new StringBuilder();
-
                 if (TN3270.CursorX > 0)
                 {
-                    sb.Append(TN3270.CurrentScreenXML.GetRow(TN3270.CursorY));
-                    sb.Remove(0, TN3270.CursorX);
+                    int start,end,length,current,left;
+                    foreach (Open3270.TN3270.XMLScreenField field in TN3270.CurrentScreenXML.Fields)
+                    {
+                        start = field.Location.position;
+                        end = field.Location.position + field.Location.length;
+                        length = field.Location.length;
+                        current = TN3270.CursorY * 80 + TN3270.CursorX;
+                        left = length - (current - start);
+                        if (start <= current && current < end)
+                        {
+                            sb.Append(TN3270.CurrentScreenXML.GetRow(TN3270.CursorY));
+                            sb.Remove(0, TN3270.CursorX);
+                            if (sb.Length - 1 != left)
+                            {
+                                sb.Remove(left, sb.Length - left);
+                            }
+                            break;
+                        }
+                    }
                 }
-
+                
                 this.SelectionStart--;
                 TN3270.SetText(sb.ToString());
                 this.SelectedText = "";
-
                 return;
             }
             if (e.KeyChar == '\t')
                 return;
-            
+
             TN3270.SetText(e.KeyChar.ToString());
             this.SelectedText = e.KeyChar.ToString();
             this.Select(this.SelectionStart, 1);

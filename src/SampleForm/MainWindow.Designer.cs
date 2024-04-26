@@ -100,9 +100,9 @@ namespace SampleForm
             OpenEmulator.AcceptsTab = true;
             OpenEmulator.BackColor = System.Drawing.Color.Black;
             OpenEmulator.ForeColor = System.Drawing.Color.Lime;
-            OpenEmulator.Location = new System.Drawing.Point(16, 19);
-            OpenEmulator.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            OpenEmulator.MaxLength = 2000;
+            OpenEmulator.Location = new System.Drawing.Point(14, 14);
+            OpenEmulator.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            OpenEmulator.MaxLength = 1920;
             OpenEmulator.Name = "OpenEmulator";
             OpenEmulator.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             OpenEmulator.Size = new System.Drawing.Size(1153, 901);
